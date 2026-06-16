@@ -1,0 +1,624 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe Estratégico | HirePath</title>
+  <style>
+    :root {
+      --navy: #0B1220;
+      --blue: #2563EB;
+      --cyan: #06B6D4;
+      --green: #22C55E;
+      --gray: #64748B;
+      --light: #F8FAFC;
+      --white: #FFFFFF;
+      --dark-card: #111827;
+      --border: #E2E8F0;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--navy), #1E3A8A);
+      color: var(--white);
+      padding: 80px 10%;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin: 0 0 16px;
+    }
+
+    header p {
+      max-width: 850px;
+      font-size: 20px;
+      color: #DDE7FF;
+    }
+
+    section {
+      padding: 56px 10%;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    h3 {
+      color: #1E40AF;
+      margin-top: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .mini-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #DBEAFE;
+      color: #1D4ED8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .color {
+      width: 160px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .swatch {
+      height: 80px;
+    }
+
+    .color p {
+      padding: 12px;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .dark {
+      background: var(--dark-card);
+      color: white;
+    }
+
+    .dark h2, .dark h3 {
+      color: white;
+    }
+
+    .dark p, .dark li {
+      color: #CBD5E1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #EFF6FF;
+      color: #1E3A8A;
+    }
+
+    footer {
+      padding: 36px 10%;
+      background: var(--navy);
+      color: #CBD5E1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="badge">Informe Estratégico</span>
+  <h1>TalentPilot AI</h1>
+  <p>
+    Plataforma inteligente para búsqueda de empleo, adaptación ética de CV,
+    gestión de postulaciones y preparación personalizada para entrevistas.
+  </p>
+</header>
+
+<section>
+  <div class="card">
+    <h2>1. Nombre propuesto</h2>
+    <h3>TalentPilot AI</h3>
+    <p>
+      El nombre comunica dirección, acompañamiento y control. “Talent” conecta
+      con empleabilidad y desarrollo profesional, mientras que “Pilot” transmite
+      la idea de una herramienta que guía al usuario durante todo el proceso,
+      sin reemplazar su criterio ni su identidad profesional.
+    </p>
+
+    <h3>Alternativas de nombre</h3>
+    <ul>
+      <li><strong>ApplyWise:</strong> enfocado en postulaciones inteligentes.</li>
+      <li><strong>JobBridge AI:</strong> conecta talento con oportunidades.</li>
+      <li><strong>CVPilot:</strong> más directo, centrado en el CV.</li>
+      <li><strong>HirePath:</strong> transmite ruta profesional y crecimiento.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Concepto general del proyecto</h2>
+    <p>
+      TalentPilot AI es una plataforma que ayuda al usuario a encontrar empleos
+      alineados con su perfil, adaptar su CV a cada vacante usando únicamente
+      información verdadera, gestionar empresas postuladas y preparar respuestas
+      para entrevistas según el puesto, la empresa y la experiencia real del candidato.
+    </p>
+    <p>
+      La plataforma puede recopilar ofertas desde fuentes permitidas, analizar
+      requisitos, comparar compatibilidad con el perfil del usuario y generar
+      materiales personalizados: CV, carta breve, respuestas a preguntas frecuentes
+      y registro de seguimiento.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Misión</h2>
+    <p>
+      Facilitar el acceso a mejores oportunidades laborales mediante una plataforma
+      ética, inteligente y personalizada que ayude a los usuarios a postular con
+      mayor precisión, orden y preparación, resaltando sus competencias reales sin
+      alterar ni falsificar su información profesional.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Visión</h2>
+    <p>
+      Convertirse en una de las plataformas líderes de empleabilidad asistida por
+      inteligencia artificial en Latinoamérica, reconocida por mejorar la calidad
+      de las postulaciones, reducir el desorden del proceso de búsqueda laboral y
+      preparar candidatos con mayor seguridad para entrevistas.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Propósito</h2>
+    <p>
+      Ayudar a que las personas no postulen de manera improvisada, sino con una
+      estrategia clara: identificar empleos compatibles, presentar su experiencia
+      de forma relevante y prepararse para demostrar valor frente a cada empresa.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Valores de marca</h2>
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Veracidad</h3>
+        <p>La plataforma nunca debe inventar experiencia, estudios, logros ni certificaciones.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Transparencia</h3>
+        <p>El usuario debe saber qué información se usará y qué contenido será enviado.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Precisión</h3>
+        <p>Cada CV y speech debe adaptarse al puesto sin perder coherencia profesional.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Autonomía</h3>
+        <p>La IA asiste, pero el usuario mantiene el control final de cada postulación.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Privacidad</h3>
+        <p>Los datos personales, laborales y académicos deben protegerse con altos estándares.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Mejora continua</h3>
+        <p>El sistema aprende del avance del usuario, entrevistas, rechazos y respuestas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>7. Propuesta de valor</h2>
+    <p>
+      TalentPilot AI no solo busca empleos: organiza la búsqueda laboral como un
+      proceso profesional. Permite crear un perfil maestro del candidato, detectar
+      oportunidades compatibles, adaptar el CV a cada vacante, registrar empresas
+      postuladas y preparar respuestas de entrevista basadas en evidencias reales.
+    </p>
+
+    <h3>Diferenciador principal</h3>
+    <p>
+      La plataforma no genera un CV genérico ni un discurso artificial. Construye
+      una narrativa profesional personalizada para cada puesto, usando únicamente
+      datos reales del usuario y priorizando lo más relevante para la vacante.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>8. Módulos funcionales</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Módulo</th>
+          <th>Función</th>
+          <th>Resultado esperado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Perfil profesional maestro</td>
+          <td>Registra educación, experiencia, proyectos, certificaciones, habilidades, logros y links.</td>
+          <td>Base única de información validada.</td>
+        </tr>
+        <tr>
+          <td>Buscador de ofertas</td>
+          <td>Consulta fuentes permitidas, portales laborales o páginas de empresas.</td>
+          <td>Lista de empleos filtrados por criterios del usuario.</td>
+        </tr>
+        <tr>
+          <td>Motor de compatibilidad</td>
+          <td>Compara requisitos del puesto con el perfil del candidato.</td>
+          <td>Score de ajuste y explicación de coincidencias.</td>
+        </tr>
+        <tr>
+          <td>CV dinámico</td>
+          <td>Selecciona contenido relevante según el puesto sin inventar datos.</td>
+          <td>CV adaptado por vacante.</td>
+        </tr>
+        <tr>
+          <td>Postulación asistida</td>
+          <td>Completa formularios y preguntas usando la información del usuario.</td>
+          <td>Postulaciones más rápidas y ordenadas.</td>
+        </tr>
+        <tr>
+          <td>Gestión de postulaciones</td>
+          <td>Registra empresa, puesto, fecha, estado, CV enviado y observaciones.</td>
+          <td>Pipeline laboral tipo CRM.</td>
+        </tr>
+        <tr>
+          <td>Preparador de entrevistas</td>
+          <td>Genera speech para preguntas técnicas, conductuales y situacionales.</td>
+          <td>Respuestas personalizadas con método STAR.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card dark">
+    <h2>9. Consideración estratégica importante</h2>
+    <p>
+      La automatización total debe manejarse con cuidado. Algunas plataformas no
+      permiten scraping, bots o automatización no autorizada. Por eso, el enfoque
+      recomendado es construir un sistema de “postulación asistida”, donde la IA
+      prepara, completa y recomienda, pero el usuario revisa y aprueba antes de enviar.
+    </p>
+    <p>
+      Esto reduce riesgos, mejora la calidad de las postulaciones y evita que el
+      producto sea percibido como spam laboral.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>10. Uso de Groq como LLM</h2>
+    <p>
+      Groq puede utilizarse para generar respuestas estructuradas, clasificar
+      vacantes, adaptar CV, responder preguntas de formularios y construir discursos
+      de entrevista en formato controlado. Lo ideal es pedir respuestas en JSON para
+      que el backend pueda validar cada salida antes de mostrarla o enviarla.
+    </p>
+
+    <h3>Casos de uso del LLM</h3>
+    <ul>
+      <li>Extraer requisitos clave de una vacante.</li>
+      <li>Comparar experiencia del usuario contra requisitos del puesto.</li>
+      <li>Seleccionar logros y proyectos relevantes.</li>
+      <li>Redactar resumen profesional adaptado.</li>
+      <li>Responder preguntas como expectativa salarial, experiencia, disponibilidad o motivación.</li>
+      <li>Crear speech para entrevistas con estructura STAR.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>11. Paleta de colores</h2>
+    <p>
+      La identidad visual debe transmitir tecnología, confianza, empleabilidad,
+      orden y progreso profesional.
+    </p>
+
+    <div class="palette">
+      <div class="color">
+        <div class="swatch" style="background:#0B1220;"></div>
+        <p><strong>Azul Noche</strong><br>#0B1220<br>Confianza y seriedad.</p>
+      </div>
+      <div class="color">
+        <div class="swatch" style="background:#2563EB;"></div>
+        <p><strong>Azul Estratégico</strong><br>#2563EB<br>Tecnología y acción.</p>
+      </div>
+      <div class="color">
+        <div class="swatch" style="background:#06B6D4;"></div>
+        <p><strong>Cian IA</strong><br>#06B6D4<br>Innovación y dinamismo.</p>
+      </div>
+      <div class="color">
+        <div class="swatch" style="background:#22C55E;"></div>
+        <p><strong>Verde Progreso</strong><br>#22C55E<br>Avance y oportunidad.</p>
+      </div>
+      <div class="color">
+        <div class="swatch" style="background:#F8FAFC;"></div>
+        <p><strong>Blanco Nube</strong><br>#F8FAFC<br>Limpieza y claridad.</p>
+      </div>
+      <div class="color">
+        <div class="swatch" style="background:#64748B;"></div>
+        <p><strong>Gris Profesional</strong><br>#64748B<br>Equilibrio y soporte.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>12. Personalidad de marca</h2>
+    <p>
+      TalentPilot AI debe sentirse como un asesor profesional, no como un bot que
+      dispara postulaciones sin criterio. Su tono debe ser claro, estratégico,
+      confiable y motivador.
+    </p>
+
+    <ul>
+      <li><strong>Profesional:</strong> comunica seguridad y orden.</li>
+      <li><strong>Humano:</strong> acompaña al usuario durante una etapa sensible.</li>
+      <li><strong>Ético:</strong> no falsifica información.</li>
+      <li><strong>Inteligente:</strong> recomienda con base en datos.</li>
+      <li><strong>Directo:</strong> evita textos inflados o poco creíbles.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>13. Flujo recomendado del usuario</h2>
+    <ol>
+      <li>El usuario crea su perfil profesional maestro.</li>
+      <li>Registra experiencia, educación, proyectos, certificados, habilidades y links.</li>
+      <li>Define criterios: cargo, industria, ubicación, salario, modalidad y seniority.</li>
+      <li>El sistema busca vacantes compatibles en fuentes permitidas.</li>
+      <li>La IA analiza cada vacante y calcula compatibilidad.</li>
+      <li>El sistema genera CV adaptado y respuestas a preguntas del formulario.</li>
+      <li>El usuario revisa y aprueba la postulación.</li>
+      <li>La plataforma registra empresa, fecha, estado y documentos enviados.</li>
+      <li>Si hay entrevista, genera speech personalizado.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>14. Arquitectura sugerida</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Capa</th>
+          <th>Tecnología sugerida</th>
+          <th>Responsabilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend</td>
+          <td>Next.js + Tailwind CSS</td>
+          <td>Dashboard, formularios, CV preview, pipeline de postulaciones.</td>
+        </tr>
+        <tr>
+          <td>Backend</td>
+          <td>Django + Django REST Framework</td>
+          <td>API, usuarios, permisos, postulaciones, perfiles y documentos.</td>
+        </tr>
+        <tr>
+          <td>Base de datos</td>
+          <td>PostgreSQL</td>
+          <td>Datos profesionales, vacantes, empresas, estados y trazabilidad.</td>
+        </tr>
+        <tr>
+          <td>IA</td>
+          <td>Groq API</td>
+          <td>Clasificación, redacción, análisis de compatibilidad y speech.</td>
+        </tr>
+        <tr>
+          <td>Automatización</td>
+          <td>Playwright / APIs oficiales</td>
+          <td>Lectura y llenado asistido de formularios cuando sea permitido.</td>
+        </tr>
+        <tr>
+          <td>Documentos</td>
+          <td>HTML to PDF / WeasyPrint</td>
+          <td>Generación de CV en PDF desde plantillas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>15. Modelo de datos inicial</h2>
+    <ul>
+      <li><strong>Usuario:</strong> datos personales, preferencias y configuración.</li>
+      <li><strong>PerfilProfesional:</strong> resumen, habilidades, seniority, ubicación.</li>
+      <li><strong>Educacion:</strong> institución, carrera, fechas, descripción.</li>
+      <li><strong>ExperienciaLaboral:</strong> empresa, cargo, funciones, logros, herramientas.</li>
+      <li><strong>Proyecto:</strong> nombre, problema, solución, impacto, tecnologías.</li>
+      <li><strong>Certificacion:</strong> nombre, institución, fecha, link.</li>
+      <li><strong>Vacante:</strong> empresa, cargo, descripción, requisitos, fuente.</li>
+      <li><strong>Postulacion:</strong> estado, fecha, CV usado, respuestas enviadas.</li>
+      <li><strong>SpeechEntrevista:</strong> preguntas, respuestas, ejemplos y recomendaciones.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>16. Estados del pipeline de postulación</h2>
+    <div class="grid">
+      <div class="mini-card"><strong>Detectada</strong><p>La vacante fue encontrada.</p></div>
+      <div class="mini-card"><strong>Analizada</strong><p>La IA calculó compatibilidad.</p></div>
+      <div class="mini-card"><strong>CV generado</strong><p>Existe una versión adaptada.</p></div>
+      <div class="mini-card"><strong>Pendiente de aprobación</strong><p>El usuario debe revisar.</p></div>
+      <div class="mini-card"><strong>Postulada</strong><p>La candidatura fue enviada.</p></div>
+      <div class="mini-card"><strong>En entrevista</strong><p>Hay contacto o proceso activo.</p></div>
+      <div class="mini-card"><strong>Rechazada</strong><p>No continúa el proceso.</p></div>
+      <div class="mini-card"><strong>Oferta recibida</strong><p>La empresa hizo una propuesta.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>17. Principios para el CV dinámico</h2>
+    <ul>
+      <li>No inventar experiencia, cargos, empresas ni herramientas.</li>
+      <li>No exagerar niveles de dominio técnico.</li>
+      <li>Priorizar logros medibles cuando existan.</li>
+      <li>Adaptar el resumen profesional al puesto.</li>
+      <li>Mostrar proyectos relevantes para la vacante.</li>
+      <li>Ocultar contenido poco relacionado para mejorar claridad.</li>
+      <li>Mantener una trazabilidad entre el CV generado y los datos originales.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>18. Funcionalidad de speech para entrevista</h2>
+    <p>
+      El módulo de entrevista debe preparar al usuario para preguntas probables
+      según la vacante. Debe generar respuestas breves, realistas y defendibles,
+      usando ejemplos de la experiencia del usuario.
+    </p>
+
+    <h3>Tipos de preguntas</h3>
+    <ul>
+      <li>Háblame de ti.</li>
+      <li>¿Por qué quieres este puesto?</li>
+      <li>¿Cuál es tu experiencia relacionada?</li>
+      <li>Cuéntame un logro importante.</li>
+      <li>Cuéntame sobre un conflicto laboral.</li>
+      <li>¿Por qué deberíamos contratarte?</li>
+      <li>¿Cuál es tu expectativa salarial?</li>
+      <li>Preguntas técnicas según el cargo.</li>
+    </ul>
+  </div>
+
+  <div class="card dark">
+    <h2>19. Posicionamiento de mercado</h2>
+    <p>
+      TalentPilot AI debe posicionarse como una plataforma de empleabilidad
+      inteligente para profesionales que quieren postular mejor, no simplemente
+      postular más. Su promesa central debe ser:
+    </p>
+    <h3>“Postula con estrategia. Entrevista con seguridad.”</h3>
+  </div>
+
+  <div class="card">
+    <h2>20. Slogan recomendado</h2>
+    <h3>Tu carrera, mejor dirigida.</h3>
+    <p>
+      Este slogan refuerza la idea de guía, dirección y control profesional.
+      Es breve, comercial y compatible con una marca tecnológica.
+    </p>
+
+    <h3>Alternativas</h3>
+    <ul>
+      <li>Postula mejor, no más.</li>
+      <li>La forma inteligente de buscar empleo.</li>
+      <li>Convierte tu experiencia en oportunidades.</li>
+      <li>Tu copiloto para conseguir empleo.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>21. Roadmap estratégico</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Fase</th>
+          <th>Objetivo</th>
+          <th>Entregables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fase 1 - MVP</td>
+          <td>Validar perfil, CV dinámico y gestión de postulaciones.</td>
+          <td>Perfil profesional, CV PDF, pipeline, análisis de vacantes.</td>
+        </tr>
+        <tr>
+          <td>Fase 2 - IA avanzada</td>
+          <td>Mejorar compatibilidad y speech de entrevistas.</td>
+          <td>Score, respuestas STAR, preguntas técnicas, recomendaciones.</td>
+        </tr>
+        <tr>
+          <td>Fase 3 - Integraciones</td>
+          <td>Conectar fuentes permitidas y APIs oficiales.</td>
+          <td>Importación de vacantes, seguimiento automático, alertas.</td>
+        </tr>
+        <tr>
+          <td>Fase 4 - Automatización asistida</td>
+          <td>Completar formularios con aprobación del usuario.</td>
+          <td>Autofill, validación humana, registro de evidencias.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>22. Recomendación final</h2>
+    <p>
+      La idea tiene alto potencial porque ataca tres problemas reales: desorden
+      en la búsqueda laboral, baja personalización del CV y falta de preparación
+      para entrevistas. Sin embargo, su éxito dependerá de mantener un enfoque
+      ético: automatizar la preparación, la organización y la asistencia, pero
+      conservar la aprobación humana antes de cada postulación.
+    </p>
+    <p>
+      La mejor versión del producto no es un bot que postula masivamente, sino
+      una plataforma que ayuda al usuario a postular con mayor criterio, mayor
+      calidad y mayor confianza.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>TalentPilot AI — Informe Estratégico de Plataforma de Empleabilidad Inteligente</p>
+</footer>
+
+</body>
+</html>
+```

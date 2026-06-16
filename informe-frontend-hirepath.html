@@ -1,0 +1,888 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe Frontend UI/UX | HirePath</title>
+  <style>
+    :root {
+      --navy: #0B1220;
+      --blue: #2563EB;
+      --cyan: #06B6D4;
+      --green: #22C55E;
+      --slate: #64748B;
+      --light: #F8FAFC;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --soft-blue: #EFF6FF;
+      --dark-card: #111827;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 80px 10%;
+      background: linear-gradient(135deg, #0B1220, #1E3A8A);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin: 0 0 16px;
+    }
+
+    header p {
+      max-width: 900px;
+      font-size: 19px;
+      color: #DBEAFE;
+    }
+
+    section {
+      padding: 48px 10%;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 0;
+    }
+
+    h3 {
+      color: #1E40AF;
+      margin-top: 28px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft-blue);
+      color: #1E3A8A;
+    }
+
+    code {
+      background: #E2E8F0;
+      padding: 3px 7px;
+      border-radius: 6px;
+    }
+
+    pre {
+      background: #0B1220;
+      color: #E5E7EB;
+      padding: 22px;
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #DBEAFE;
+      color: #1D4ED8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .dark {
+      background: var(--dark-card);
+      color: white;
+    }
+
+    .dark h2, .dark h3 {
+      color: white;
+    }
+
+    .dark p, .dark li {
+      color: #CBD5E1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .mini-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    footer {
+      padding: 36px 10%;
+      background: var(--navy);
+      color: #CBD5E1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="badge">UI/UX Frontend Strategy</span>
+  <h1>Informe de Diseño Frontend para HirePath</h1>
+  <p>
+    Guía completa para diseñar el frontend de HirePath: vistas principales,
+    componentes, layout, estilo visual, experiencia de usuario e imágenes simbólicas
+    necesarias para una plataforma de búsqueda laboral inteligente.
+  </p>
+</header>
+
+<section>
+
+  <div class="card">
+    <h2>1. Concepto visual general</h2>
+    <p>
+      HirePath debe sentirse como una plataforma tecnológica, profesional y confiable.
+      No debe parecer una bolsa laboral tradicional, sino un asistente estratégico
+      para organizar la búsqueda de empleo, adaptar el CV, gestionar postulaciones
+      y preparar entrevistas.
+    </p>
+    <p>
+      El diseño debe transmitir orden, inteligencia, progreso y control. Por eso se
+      recomienda una interfaz limpia, con fondos claros, tarjetas bien separadas,
+      acentos azules y verdes, gráficos simples y elementos simbólicos relacionados
+      con rutas, documentos, conexiones, brújulas, tableros, nodos e inteligencia artificial.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Sistema visual recomendado</h2>
+
+    <h3>Paleta de colores</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Color</th>
+          <th>Hex</th>
+          <th>Uso recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Azul noche</td>
+          <td>#0B1220</td>
+          <td>Header, sidebar, fondos premium, footer.</td>
+        </tr>
+        <tr>
+          <td>Azul estratégico</td>
+          <td>#2563EB</td>
+          <td>Botones principales, enlaces, highlights.</td>
+        </tr>
+        <tr>
+          <td>Cian IA</td>
+          <td>#06B6D4</td>
+          <td>Elementos tecnológicos, estados de análisis, detalles visuales.</td>
+        </tr>
+        <tr>
+          <td>Verde progreso</td>
+          <td>#22C55E</td>
+          <td>Estados positivos, compatibilidad alta, postulaciones exitosas.</td>
+        </tr>
+        <tr>
+          <td>Gris profesional</td>
+          <td>#64748B</td>
+          <td>Texto secundario, metadatos, descripciones.</td>
+        </tr>
+        <tr>
+          <td>Blanco nube</td>
+          <td>#F8FAFC</td>
+          <td>Fondo general de la plataforma.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tipografía</h3>
+    <p>
+      Se recomienda usar <strong>Inter</strong> para toda la plataforma por su lectura
+      clara, apariencia moderna y buena compatibilidad con dashboards.
+    </p>
+
+    <h3>Estilo general</h3>
+    <ul>
+      <li>Cards con bordes redondeados de 16px a 24px.</li>
+      <li>Sombras suaves, no exageradas.</li>
+      <li>Mucho espacio en blanco.</li>
+      <li>Iconografía lineal y moderna.</li>
+      <li>Estados visuales claros: pendiente, recomendado, aplicado, entrevista, rechazado.</li>
+      <li>Diseño responsive desde el inicio.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3. Vistas principales del proyecto</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Vista</th>
+          <th>Propósito</th>
+          <th>Elementos principales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Landing Page</td>
+          <td>Presentar HirePath y convertir visitantes en usuarios registrados.</td>
+          <td>Hero, beneficios, cómo funciona, módulos, CTA, FAQ, footer.</td>
+        </tr>
+        <tr>
+          <td>Login</td>
+          <td>Permitir acceso seguro a usuarios registrados.</td>
+          <td>Formulario, imagen simbólica, link a registro, recuperación de contraseña.</td>
+        </tr>
+        <tr>
+          <td>Registro</td>
+          <td>Crear cuenta de candidato.</td>
+          <td>Formulario simple, pasos iniciales, aceptación de términos.</td>
+        </tr>
+        <tr>
+          <td>Onboarding</td>
+          <td>Recolectar datos profesionales iniciales del usuario.</td>
+          <td>Wizard por pasos: perfil, experiencia, estudios, skills, preferencias.</td>
+        </tr>
+        <tr>
+          <td>Dashboard</td>
+          <td>Resumen del estado de búsqueda laboral.</td>
+          <td>KPIs, postulaciones recientes, vacantes recomendadas, tareas pendientes.</td>
+        </tr>
+        <tr>
+          <td>Perfil Profesional</td>
+          <td>Gestionar datos reales del candidato.</td>
+          <td>Experiencia, educación, certificaciones, proyectos, skills y enlaces.</td>
+        </tr>
+        <tr>
+          <td>Vacantes</td>
+          <td>Listar empleos encontrados por la plataforma.</td>
+          <td>Filtros, cards de vacantes, score de compatibilidad, fuente.</td>
+        </tr>
+        <tr>
+          <td>Detalle de Vacante</td>
+          <td>Analizar una oportunidad específica.</td>
+          <td>Descripción, requisitos, empresa, score, salario sugerido, CTA para generar CV.</td>
+        </tr>
+        <tr>
+          <td>CV Dinámico</td>
+          <td>Ver y editar el CV adaptado para una vacante.</td>
+          <td>Preview, secciones seleccionadas, botón descargar PDF, historial.</td>
+        </tr>
+        <tr>
+          <td>Postulaciones</td>
+          <td>Gestionar el pipeline laboral.</td>
+          <td>Kanban o tabla, estados, fechas, CV enviado, notas.</td>
+        </tr>
+        <tr>
+          <td>Entrevistas</td>
+          <td>Preparar respuestas personalizadas.</td>
+          <td>Preguntas, speech sugerido, método STAR, notas del usuario.</td>
+        </tr>
+        <tr>
+          <td>Panel Administrativo</td>
+          <td>Administrar fuentes, usuarios, scraping y logs.</td>
+          <td>Usuarios, fuentes, vacantes, logs IA, scraping runs, métricas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card dark">
+    <h2>4. Estructura de rutas recomendada en Next.js</h2>
+    <pre>
+app/
+├── page.jsx                         # Landing page
+├── login/page.jsx                   # Login
+├── register/page.jsx                # Registro
+├── onboarding/page.jsx              # Configuración inicial
+├── dashboard/page.jsx               # Panel principal del usuario
+├── profile/page.jsx                 # Perfil profesional
+├── jobs/page.jsx                    # Vacantes encontradas
+├── jobs/[id]/page.jsx               # Detalle de vacante
+├── cvs/page.jsx                     # CVs generados
+├── cvs/[id]/page.jsx                # Preview del CV
+├── applications/page.jsx            # Pipeline de postulaciones
+├── interviews/page.jsx              # Preparación de entrevistas
+├── interviews/[id]/page.jsx         # Detalle de preparación
+├── settings/page.jsx                # Configuración del usuario
+└── admin/
+    ├── page.jsx                     # Dashboard administrativo
+    ├── users/page.jsx               # Gestión de usuarios
+    ├── sources/page.jsx             # Fuentes de empleo
+    ├── scraping/page.jsx            # Scraping runs
+    ├── jobs/page.jsx                # Vacantes importadas
+    └── ai-logs/page.jsx             # Logs de IA
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>5. Landing Page</h2>
+    <p>
+      La landing page debe vender la idea de que HirePath ayuda a postular con estrategia,
+      no de forma masiva y desordenada. Debe ser clara, elegante y orientada a conversión.
+    </p>
+
+    <h3>Secciones recomendadas</h3>
+    <ol>
+      <li><strong>Hero Section:</strong> mensaje principal, CTA y visual simbólico.</li>
+      <li><strong>Problema:</strong> desorden en postulaciones, CV genérico, falta de preparación.</li>
+      <li><strong>Solución:</strong> plataforma que busca, analiza, adapta y prepara.</li>
+      <li><strong>Cómo funciona:</strong> perfil, vacantes, CV, postulación, entrevista.</li>
+      <li><strong>Módulos:</strong> CV dinámico, salario sugerido, pipeline, entrevistas.</li>
+      <li><strong>Confianza:</strong> no inventa datos, revisión humana, trazabilidad.</li>
+      <li><strong>CTA final:</strong> crear cuenta o probar demo.</li>
+      <li><strong>FAQ:</strong> preguntas frecuentes sobre CV, IA y postulaciones.</li>
+    </ol>
+
+    <h3>Diseño del Hero</h3>
+    <p>
+      Fondo azul noche con gradiente, texto blanco, botón principal azul/cian y un visual
+      abstracto de una ruta profesional. El visual puede mostrar un mapa de nodos, una
+      brújula digital, documentos conectados y una línea luminosa que representa el camino laboral.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Login y Registro</h2>
+    <p>
+      Las pantallas de autenticación deben ser simples, rápidas y confiables. Se recomienda
+      un layout dividido: formulario a un lado y visual simbólico al otro.
+    </p>
+
+    <h3>Componentes</h3>
+    <ul>
+      <li>Logo de HirePath.</li>
+      <li>Campo email.</li>
+      <li>Campo contraseña.</li>
+      <li>Botón principal.</li>
+      <li>Link a registro o login.</li>
+      <li>Mensaje de error claro.</li>
+      <li>Visual lateral abstracto sin personas.</li>
+    </ul>
+
+    <h3>Diseño recomendado</h3>
+    <p>
+      Formulario en card blanca, fondo #F8FAFC, inputs grandes, bordes suaves,
+      botón azul estratégico y microcopy breve: “Accede a tu ruta laboral inteligente”.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Onboarding</h2>
+    <p>
+      El onboarding debe ser un wizard de 5 pasos para no abrumar al usuario. Su objetivo
+      es construir el perfil profesional maestro.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Paso</th>
+          <th>Contenido</th>
+          <th>Diseño</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1. Perfil básico</td>
+          <td>Titular, resumen, ubicación, links.</td>
+          <td>Formulario breve con barra de progreso.</td>
+        </tr>
+        <tr>
+          <td>2. Experiencia</td>
+          <td>Empresa, cargo, funciones, logros y herramientas.</td>
+          <td>Cards editables por experiencia.</td>
+        </tr>
+        <tr>
+          <td>3. Educación y certificados</td>
+          <td>Formación, cursos y credenciales.</td>
+          <td>Listas dinámicas con botón “Agregar”.</td>
+        </tr>
+        <tr>
+          <td>4. Skills y proyectos</td>
+          <td>Habilidades, nivel, años y proyectos destacados.</td>
+          <td>Chips, selects y cards.</td>
+        </tr>
+        <tr>
+          <td>5. Preferencias laborales</td>
+          <td>Cargos objetivo, salario mínimo, modalidad y ubicación.</td>
+          <td>Inputs tipo tags y sliders simples.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Dashboard del candidato</h2>
+    <p>
+      El dashboard debe funcionar como centro de control. El usuario debe entender
+      rápidamente cuántas vacantes tiene, cuántas postulaciones hizo y qué acciones
+      están pendientes.
+    </p>
+
+    <h3>Elementos principales</h3>
+    <ul>
+      <li>Cards KPI: vacantes recomendadas, CVs generados, postulaciones activas, entrevistas.</li>
+      <li>Panel de tareas pendientes.</li>
+      <li>Vacantes con mayor compatibilidad.</li>
+      <li>Últimas postulaciones.</li>
+      <li>Estado del perfil profesional.</li>
+      <li>CTA: “Buscar nuevas vacantes”.</li>
+    </ul>
+
+    <h3>Diseño recomendado</h3>
+    <p>
+      Layout con sidebar oscuro, topbar clara y contenido en cards. Las métricas deben
+      ser visuales, con íconos simples y colores por estado.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>9. Vista de Vacantes</h2>
+    <p>
+      Esta vista debe permitir explorar las oportunidades encontradas. Debe evitar
+      saturar al usuario con demasiado texto y priorizar score, cargo, empresa, salario
+      y modalidad.
+    </p>
+
+    <h3>Componentes</h3>
+    <ul>
+      <li>Barra de búsqueda.</li>
+      <li>Filtros por cargo, ubicación, modalidad, fuente, salario y score.</li>
+      <li>JobCard.</li>
+      <li>Badge de fuente: LinkedIn, Computrabajo, Bumeran, etc.</li>
+      <li>Score de compatibilidad.</li>
+      <li>Botón “Ver análisis”.</li>
+    </ul>
+
+    <h3>JobCard recomendado</h3>
+    <pre>
+[Cargo]
+Empresa externa · Ubicación · Modalidad
+
+Score: 84%
+Salario publicado: S/ 3,000 - S/ 4,000
+Salario sugerido: S/ 3,500
+
+[Ver detalle] [Generar CV]
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>10. Detalle de Vacante</h2>
+    <p>
+      Esta vista debe responder una pregunta clave: “¿Vale la pena postular a este empleo?”.
+    </p>
+
+    <h3>Bloques recomendados</h3>
+    <ul>
+      <li>Resumen de la vacante.</li>
+      <li>Compatibilidad general.</li>
+      <li>Habilidades coincidentes.</li>
+      <li>Habilidades faltantes.</li>
+      <li>Experiencia relacionada del usuario.</li>
+      <li>Salario sugerido y razonamiento.</li>
+      <li>Riesgos o advertencias.</li>
+      <li>Botones: generar CV, preparar respuestas, crear postulación.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>11. Vista de CV Dinámico</h2>
+    <p>
+      La vista de CV debe permitir revisar qué información seleccionó la IA y qué
+      contenido será enviado. La transparencia es clave.
+    </p>
+
+    <h3>Diseño recomendado</h3>
+    <ul>
+      <li>Vista dividida: editor a la izquierda, preview del CV a la derecha.</li>
+      <li>Secciones seleccionables: resumen, experiencia, proyectos, skills, educación.</li>
+      <li>Indicador: “Contenido basado en datos reales del perfil”.</li>
+      <li>Botón “Descargar PDF”.</li>
+      <li>Botón “Usar en postulación”.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>12. Vista de Postulaciones</h2>
+    <p>
+      Esta vista debe funcionar como un CRM laboral. Se recomienda permitir vista
+      Kanban y vista tabla.
+    </p>
+
+    <h3>Columnas Kanban</h3>
+    <ul>
+      <li>Detectada</li>
+      <li>Compatible</li>
+      <li>CV generado</li>
+      <li>Pendiente de revisión</li>
+      <li>Postulada</li>
+      <li>Entrevista</li>
+      <li>Oferta</li>
+      <li>Rechazada</li>
+    </ul>
+
+    <h3>ApplicationCard</h3>
+    <pre>
+[Cargo]
+Empresa · Fecha de postulación
+Estado: Entrevista
+CV usado: CV Analista BI
+Salario solicitado: S/ 3,500
+
+[Ver detalle] [Preparar entrevista]
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>13. Vista de Entrevistas</h2>
+    <p>
+      La vista de entrevistas debe ayudar al usuario a practicar respuestas realistas.
+      No debe sentirse como texto genérico, sino como un guion personalizado.
+    </p>
+
+    <h3>Componentes</h3>
+    <ul>
+      <li>Resumen del puesto.</li>
+      <li>Consejos generales.</li>
+      <li>Preguntas agrupadas por categoría.</li>
+      <li>Respuesta sugerida.</li>
+      <li>Notas del usuario.</li>
+      <li>Marcador de práctica: pendiente, practicada, dominada.</li>
+    </ul>
+
+    <h3>Categorías</h3>
+    <ul>
+      <li>General</li>
+      <li>Técnica</li>
+      <li>Conductual</li>
+      <li>Salario</li>
+      <li>Afinidad con la empresa</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>14. Panel Administrativo</h2>
+    <p>
+      El panel administrativo no debe ser el centro del producto, pero será necesario
+      para monitorear usuarios, fuentes, scraping, vacantes y logs de IA.
+    </p>
+
+    <h3>Vistas administrativas</h3>
+    <ul>
+      <li>Dashboard admin con métricas globales.</li>
+      <li>Usuarios registrados.</li>
+      <li>Fuentes de empleo activas.</li>
+      <li>Vacantes importadas.</li>
+      <li>Corridas de scraping.</li>
+      <li>Logs de IA.</li>
+      <li>Benchmarks salariales.</li>
+      <li>Plantillas de CV.</li>
+    </ul>
+
+    <h3>Diseño</h3>
+    <p>
+      Sidebar oscuro, tablas limpias, filtros, buscador y badges de estado. El admin
+      debe priorizar control y monitoreo, no marketing.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>15. Componentes globales</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Uso</th>
+          <th>Diseño recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Navbar</td>
+          <td>Landing y páginas públicas.</td>
+          <td>Logo izquierda, links centro, CTA derecha, fondo transparente o blanco.</td>
+        </tr>
+        <tr>
+          <td>Footer</td>
+          <td>Landing y páginas públicas.</td>
+          <td>Fondo azul noche, links, marca, términos y privacidad.</td>
+        </tr>
+        <tr>
+          <td>Sidebar</td>
+          <td>Dashboard y admin.</td>
+          <td>Oscuro, colapsable, íconos lineales, sección activa resaltada.</td>
+        </tr>
+        <tr>
+          <td>Topbar</td>
+          <td>Dashboard.</td>
+          <td>Buscador, notificaciones, perfil del usuario.</td>
+        </tr>
+        <tr>
+          <td>Button</td>
+          <td>Acciones principales y secundarias.</td>
+          <td>Primario azul, secundario blanco, peligro rojo, éxito verde.</td>
+        </tr>
+        <tr>
+          <td>Card</td>
+          <td>Contenedores de información.</td>
+          <td>Blanco, borde suave, sombra ligera, radius 18px.</td>
+        </tr>
+        <tr>
+          <td>Modal</td>
+          <td>Confirmaciones y formularios rápidos.</td>
+          <td>Fondo blur, card centrada, botones claros.</td>
+        </tr>
+        <tr>
+          <td>Badge</td>
+          <td>Estados, fuentes y categorías.</td>
+          <td>Colores suaves según estado.</td>
+        </tr>
+        <tr>
+          <td>ProgressBar</td>
+          <td>Compatibilidad, perfil completo, onboarding.</td>
+          <td>Barra delgada, color según nivel.</td>
+        </tr>
+        <tr>
+          <td>EmptyState</td>
+          <td>Cuando no hay datos.</td>
+          <td>Ilustración simbólica, mensaje breve y CTA.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>16. Inventario de imágenes necesarias</h2>
+    <p>
+      Todas las imágenes deben evitar personas. Se recomienda usar visuales simbólicos,
+      abstractos o referenciales relacionados con IA, rutas profesionales, documentos,
+      nodos, mapas, tableros y progreso.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre de imagen</th>
+          <th>Uso</th>
+          <th>Dimensiones</th>
+          <th>Descripción visual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hero-career-path.png</td>
+          <td>Hero de landing page</td>
+          <td>2400x1600</td>
+          <td>Mapa abstracto oscuro con una ruta luminosa azul/cian conectando nodos, documentos flotantes y una brújula digital. Sin personas.</td>
+        </tr>
+        <tr>
+          <td>cv-dynamic-preview.png</td>
+          <td>Sección de CV dinámico</td>
+          <td>1600x1200</td>
+          <td>Documento de CV estilizado con bloques resaltados, chips de skills y líneas de conexión hacia una vacante. Fondo claro profesional.</td>
+        </tr>
+        <tr>
+          <td>job-matching-ai.png</td>
+          <td>Sección de compatibilidad</td>
+          <td>1600x1200</td>
+          <td>Interfaz abstracta con dos columnas: perfil y vacante, unidas por nodos de coincidencia y un indicador circular de score.</td>
+        </tr>
+        <tr>
+          <td>salary-recommendation.png</td>
+          <td>Sección salario sugerido</td>
+          <td>1600x1200</td>
+          <td>Gráfico minimalista de rango salarial, moneda PEN, línea de tendencia y marcador de recomendación. Sin billetes ni personas.</td>
+        </tr>
+        <tr>
+          <td>application-pipeline.png</td>
+          <td>Sección postulaciones</td>
+          <td>1600x1200</td>
+          <td>Tablero Kanban abstracto con columnas y tarjetas de empleos, usando colores por estado. Estilo dashboard premium.</td>
+        </tr>
+        <tr>
+          <td>interview-prep.png</td>
+          <td>Sección entrevistas</td>
+          <td>1600x1200</td>
+          <td>Tarjetas con preguntas, burbujas de respuesta, notas y una estructura STAR representada con bloques conectados.</td>
+        </tr>
+        <tr>
+          <td>secure-profile-data.png</td>
+          <td>Sección confianza y privacidad</td>
+          <td>1600x1200</td>
+          <td>Carpeta digital protegida con candado, documentos y escudo minimalista. Estética limpia, tecnológica y confiable.</td>
+        </tr>
+        <tr>
+          <td>login-abstract.png</td>
+          <td>Pantalla login/registro</td>
+          <td>1200x1600</td>
+          <td>Composición vertical con nodos, ruta ascendente, tarjeta de acceso simbólica y gradiente azul oscuro. Sin rostros ni siluetas humanas.</td>
+        </tr>
+        <tr>
+          <td>empty-jobs.png</td>
+          <td>Empty state de vacantes</td>
+          <td>1000x800</td>
+          <td>Lupa sobre tarjetas de empleo abstractas, con una pequeña ruta punteada. Fondo claro, estilo amigable.</td>
+        </tr>
+        <tr>
+          <td>empty-applications.png</td>
+          <td>Empty state de postulaciones</td>
+          <td>1000x800</td>
+          <td>Tablero vacío con una tarjeta inicial y un botón simbólico de inicio. Diseño simple y motivador.</td>
+        </tr>
+        <tr>
+          <td>admin-monitoring.png</td>
+          <td>Panel administrativo</td>
+          <td>1600x1200</td>
+          <td>Dashboard oscuro con logs, métricas, fuentes externas y actividad de IA representada con gráficos abstractos.</td>
+        </tr>
+        <tr>
+          <td>not-found-route.png</td>
+          <td>Página 404</td>
+          <td>1200x900</td>
+          <td>Camino digital interrumpido con una señal minimalista de ruta no encontrada. Sin personas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card dark">
+    <h2>17. Prompt base para generar las imágenes</h2>
+    <pre>
+Imagen profesional para plataforma SaaS llamada HirePath.
+Estilo visual tecnológico, limpio, premium y moderno.
+Sin personas, sin rostros, sin manos, sin siluetas humanas.
+Usar elementos simbólicos: documentos, rutas, nodos, brújula digital,
+tarjetas de interfaz, gráficos, líneas luminosas y componentes abstractos.
+Paleta: azul noche #0B1220, azul #2563EB, cian #06B6D4,
+verde #22C55E, blanco #F8FAFC.
+Iluminación suave, composición ordenada, estética de producto digital B2B/SaaS.
+Alta resolución, sin texto pequeño ilegible, sin logos de terceros.
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>18. Recomendación de diseño por experiencia de usuario</h2>
+    <ul>
+      <li>El usuario nunca debe sentir que la IA decide todo sin control.</li>
+      <li>Cada contenido generado debe tener opción de revisar, editar y aprobar.</li>
+      <li>Los scores deben explicarse, no solo mostrarse.</li>
+      <li>El salario sugerido debe incluir razonamiento y nivel de confianza.</li>
+      <li>El CV generado debe mostrar qué datos reales fueron usados.</li>
+      <li>Las postulaciones deben organizarse visualmente como pipeline.</li>
+      <li>Las entrevistas deben ofrecer respuestas concretas y practicables.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>19. Componentes React sugeridos</h2>
+    <pre>
+components/
+├── layout/
+│   ├── PublicNavbar.jsx
+│   ├── DashboardSidebar.jsx
+│   ├── DashboardTopbar.jsx
+│   ├── Footer.jsx
+│   └── PageHeader.jsx
+│
+├── ui/
+│   ├── Button.jsx
+│   ├── Card.jsx
+│   ├── Badge.jsx
+│   ├── Modal.jsx
+│   ├── Input.jsx
+│   ├── Select.jsx
+│   ├── Textarea.jsx
+│   ├── ProgressBar.jsx
+│   ├── EmptyState.jsx
+│   └── Table.jsx
+│
+├── landing/
+│   ├── HeroSection.jsx
+│   ├── ProblemSection.jsx
+│   ├── SolutionSection.jsx
+│   ├── HowItWorksSection.jsx
+│   ├── FeaturesSection.jsx
+│   ├── TrustSection.jsx
+│   ├── FAQSection.jsx
+│   └── CTASection.jsx
+│
+├── jobs/
+│   ├── JobCard.jsx
+│   ├── JobFilters.jsx
+│   ├── JobMatchScore.jsx
+│   ├── SalarySuggestionCard.jsx
+│   └── JobDetailPanel.jsx
+│
+├── cvs/
+│   ├── CVPreview.jsx
+│   ├── CVSectionSelector.jsx
+│   ├── CVTemplateCard.jsx
+│   └── CVDownloadButton.jsx
+│
+├── applications/
+│   ├── ApplicationKanban.jsx
+│   ├── ApplicationCard.jsx
+│   ├── ApplicationStatusBadge.jsx
+│   └── ApplicationQuestionEditor.jsx
+│
+└── interviews/
+    ├── InterviewQuestionCard.jsx
+    ├── InterviewCategoryTabs.jsx
+    ├── StarAnswerBlock.jsx
+    └── PracticeStatusBadge.jsx
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>20. Conclusión</h2>
+    <p>
+      El frontend de HirePath debe ser una experiencia clara, ordenada y estratégica.
+      La plataforma no debe sentirse como un simple buscador de empleo, sino como un
+      copiloto profesional que ayuda al usuario a convertir su experiencia real en
+      mejores postulaciones.
+    </p>
+    <p>
+      La clave de diseño será combinar confianza, control humano, inteligencia visual
+      y una navegación simple. Las imágenes simbólicas reforzarán la identidad de marca
+      sin depender de fotografías de personas, haciendo que HirePath se vea más premium,
+      tecnológico y escalable.
+    </p>
+  </div>
+
+</section>
+
+<footer>
+  <p>HirePath — Informe de Diseño Frontend UI/UX</p>
+</footer>
+
+</body>
+</html>
+```

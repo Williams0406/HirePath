@@ -1,0 +1,744 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe Backend | HirePath</title>
+  <style>
+    :root {
+      --navy: #0B1220;
+      --blue: #2563EB;
+      --cyan: #06B6D4;
+      --green: #22C55E;
+      --gray: #64748B;
+      --light: #F8FAFC;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0B1220, #1E3A8A);
+      color: white;
+      padding: 80px 10%;
+    }
+
+    header h1 {
+      margin: 0 0 16px;
+      font-size: 46px;
+    }
+
+    header p {
+      max-width: 900px;
+      font-size: 19px;
+      color: #DBEAFE;
+    }
+
+    section {
+      padding: 48px 10%;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    h3 {
+      color: #1E40AF;
+      margin-top: 28px;
+    }
+
+    code {
+      background: #E2E8F0;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    pre {
+      background: #0B1220;
+      color: #E5E7EB;
+      padding: 22px;
+      border-radius: 16px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #EFF6FF;
+      color: #1E3A8A;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #DBEAFE;
+      color: #1D4ED8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .warning {
+      border-left: 6px solid var(--warning);
+      background: #FFFBEB;
+    }
+
+    .success {
+      border-left: 6px solid var(--green);
+      background: #F0FDF4;
+    }
+
+    .dark {
+      background: #111827;
+      color: white;
+    }
+
+    .dark h2, .dark h3 {
+      color: white;
+    }
+
+    .dark p, .dark li {
+      color: #CBD5E1;
+    }
+
+    footer {
+      padding: 36px 10%;
+      background: var(--navy);
+      color: #CBD5E1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="badge">Backend Strategy</span>
+  <h1>Informe Técnico del Backend de HirePath</h1>
+  <p>
+    Guía para construir el backend en Django y Django REST Framework, explicando
+    el propósito de cada tabla, su relación con los workflows del sistema y la
+    lógica operativa de búsqueda de empleo, CV dinámico, recomendación salarial,
+    postulación asistida y preparación de entrevistas.
+  </p>
+</header>
+
+<section>
+
+  <div class="card">
+    <h2>1. Objetivo del backend</h2>
+    <p>
+      El backend de <strong>HirePath</strong> debe funcionar como el núcleo de una
+      plataforma de empleabilidad inteligente. Su responsabilidad principal es
+      almacenar el perfil profesional real del usuario, importar o capturar vacantes
+      desde fuentes externas, analizar compatibilidad, generar CVs adaptados, sugerir
+      salarios, preparar respuestas de postulación y construir discursos para entrevistas.
+    </p>
+    <p>
+      El sistema no está pensado para empresas usuarias. Las empresas solo aparecen
+      como información externa asociada a vacantes scrapeadas o importadas desde
+      portales laborales.
+    </p>
+  </div>
+
+  <div class="card warning">
+    <h2>2. Consideración importante sobre scraping y automatización</h2>
+    <p>
+      Aunque el sistema puede tener módulos para capturar información de portales
+      laborales, se recomienda priorizar APIs oficiales, integraciones permitidas,
+      feeds públicos o carga manual/asistida de URLs. La automatización sobre sitios
+      como LinkedIn, Computrabajo o Bumeran debe revisarse legal y técnicamente,
+      porque algunos portales restringen bots, scraping o postulación automática.
+    </p>
+    <p>
+      La estrategia más segura para el MVP es trabajar con un modelo de
+      <strong>postulación asistida</strong>: el sistema prepara la información,
+      pero el usuario revisa y aprueba antes de enviar.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Arquitectura recomendada</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Capa</th>
+          <th>Tecnología</th>
+          <th>Responsabilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Backend API</td>
+          <td>Django + Django REST Framework</td>
+          <td>Exponer endpoints para usuarios, perfil, vacantes, CVs, postulaciones e IA.</td>
+        </tr>
+        <tr>
+          <td>Base de datos</td>
+          <td>PostgreSQL</td>
+          <td>Guardar datos relacionales y campos JSON flexibles.</td>
+        </tr>
+        <tr>
+          <td>Autenticación</td>
+          <td>JWT con SimpleJWT</td>
+          <td>Login, refresh token y protección de endpoints privados.</td>
+        </tr>
+        <tr>
+          <td>IA</td>
+          <td>Groq API</td>
+          <td>Matching, CV dinámico, respuestas de postulación, salario sugerido y entrevistas.</td>
+        </tr>
+        <tr>
+          <td>Scraping / Jobs</td>
+          <td>Celery + Redis + Playwright/Scrapy</td>
+          <td>Procesos en segundo plano para buscar y actualizar vacantes.</td>
+        </tr>
+        <tr>
+          <td>PDF</td>
+          <td>WeasyPrint / Playwright PDF</td>
+          <td>Generar CV en PDF desde plantillas HTML.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Apps sugeridas en Django</h2>
+    <pre>
+hirepath/
+│
+├── accounts/          # Usuarios, autenticación y perfil candidato
+├── profile_data/      # Educación, experiencia, proyectos, skills, certificaciones
+├── jobs/              # Fuentes, empresas externas, vacantes y criterios
+├── matching/          # Compatibilidad usuario-vacante
+├── salaries/          # Benchmarks y recomendaciones salariales
+├── cvs/               # Plantillas y CVs generados
+├── applications/      # Postulaciones y preguntas de formularios
+├── interviews/        # Preparación de entrevistas
+├── scraping/          # Corridas de scraping y logs
+├── ai/                # Servicios con Groq y logs de IA
+└── core/              # Utilidades, permisos, paginación, settings comunes
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>5. Propósito de cada tabla</h2>
+
+    <h3>5.1 CandidateProfile</h3>
+    <p>
+      Representa el perfil profesional general del usuario. Guarda información
+      resumida como titular profesional, resumen, años de experiencia, salario
+      actual, rango salarial deseado, ubicación y enlaces profesionales.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> creación del perfil, matching con
+      vacantes, generación de CV, recomendación salarial y preparación de entrevista.
+    </p>
+
+    <h3>5.2 Education</h3>
+    <p>
+      Guarda la formación académica real del usuario: institución, grado, carrera,
+      fechas y descripción. Esta información puede mostrarse o excluirse de un CV
+      dependiendo de la vacante.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> CV dinámico y respuestas de postulación.
+    </p>
+
+    <h3>5.3 WorkExperience</h3>
+    <p>
+      Almacena la experiencia laboral del usuario. Es una de las tablas más importantes
+      porque alimenta el análisis de compatibilidad, el CV adaptado y las respuestas
+      de entrevista.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> matching, CV dinámico, speech de entrevista
+      y respuestas automáticas a formularios.
+    </p>
+
+    <h3>5.4 Project</h3>
+    <p>
+      Guarda proyectos personales, académicos o laborales. Es útil para candidatos
+      que tienen experiencia práctica demostrable, incluso si no proviene de empleos
+      formales.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> CV dinámico, entrevistas técnicas y
+      diferenciación del candidato.
+    </p>
+
+    <h3>5.5 Certification</h3>
+    <p>
+      Guarda certificados, cursos, credenciales y enlaces de validación. Permite
+      reforzar la candidatura cuando una vacante pide herramientas, metodologías
+      o conocimientos específicos.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> CV dinámico y matching por requisitos.
+    </p>
+
+    <h3>5.6 Skill y UserSkill</h3>
+    <p>
+      <code>Skill</code> funciona como catálogo maestro de habilidades. 
+      <code>UserSkill</code> relaciona cada habilidad con un usuario, indicando nivel
+      y años de experiencia.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> cálculo de compatibilidad, filtros de
+      vacantes, CV dinámico y respuestas técnicas.
+    </p>
+
+    <h3>5.7 JobSource</h3>
+    <p>
+      Representa las fuentes externas desde donde se obtienen vacantes: LinkedIn,
+      Computrabajo, Bumeran, Indeed, páginas corporativas u otras fuentes.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> scraping, auditoría de fuentes y control
+      de qué portales están activos.
+    </p>
+
+    <h3>5.8 ExternalCompany</h3>
+    <p>
+      Guarda empresas detectadas desde las vacantes. No son cuentas usuarias dentro
+      de HirePath; solo son entidades externas usadas para clasificar oportunidades.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> organización de vacantes, historial de
+      postulaciones y preparación de entrevista por empresa.
+    </p>
+
+    <h3>5.9 JobPosting</h3>
+    <p>
+      Guarda cada vacante encontrada o importada. Contiene título, descripción,
+      requisitos, responsabilidades, ubicación, modalidad, salario publicado, URL,
+      fuente y estado.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> búsqueda de empleo, matching, generación
+      de CV, postulación y entrevista.
+    </p>
+
+    <h3>5.10 JobSearchCriteria</h3>
+    <p>
+      Guarda los criterios configurados por el usuario: cargos objetivo, palabras
+      clave, palabras excluidas, ubicaciones, modalidad, seniority y salario mínimo.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> búsqueda personalizada y selección de
+      vacantes compatibles.
+    </p>
+
+    <h3>5.11 JobMatch</h3>
+    <p>
+      Guarda el resultado del análisis entre un usuario y una vacante. Incluye score,
+      habilidades coincidentes, habilidades faltantes, experiencia relacionada,
+      riesgos y explicación generada por IA.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> decisión de postular o descartar una
+      vacante.
+    </p>
+
+    <h3>5.12 SalaryBenchmark</h3>
+    <p>
+      Guarda datos de mercado salarial por rol, ciudad, país y seniority. Puede
+      alimentarse manualmente, por investigación o por fuentes externas permitidas.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> recomendación salarial.
+    </p>
+
+    <h3>5.13 SalaryRecommendation</h3>
+    <p>
+      Guarda el salario sugerido para una vacante específica y un usuario específico.
+      Considera experiencia, seniority, salario publicado, mercado y expectativas
+      del usuario.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> formularios de postulación y preparación
+      para preguntas de expectativa salarial.
+    </p>
+
+    <h3>5.14 CVTemplate</h3>
+    <p>
+      Guarda las plantillas HTML y CSS que se usarán para construir CVs en PDF.
+      Permite tener varios estilos de CV según tipo de puesto o preferencia del usuario.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> generación de CV dinámico.
+    </p>
+
+    <h3>5.15 GeneratedCV</h3>
+    <p>
+      Guarda cada CV generado para una vacante. Registra qué educación, experiencia,
+      proyectos, certificaciones y habilidades fueron seleccionadas.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> postulación y trazabilidad del contenido
+      enviado.
+    </p>
+
+    <h3>5.16 Application</h3>
+    <p>
+      Representa la postulación del usuario a una vacante. Conecta usuario, vacante,
+      CV generado, salario recomendado, estado de avance, URL y notas.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> CRM laboral o pipeline de postulaciones.
+    </p>
+
+    <h3>5.17 ApplicationQuestion</h3>
+    <p>
+      Guarda preguntas encontradas en formularios de postulación y sus respuestas
+      sugeridas o finales. Permite que la IA proponga respuestas y el usuario las revise.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> postulación asistida.
+    </p>
+
+    <h3>5.18 InterviewPrep</h3>
+    <p>
+      Guarda una preparación de entrevista asociada a un usuario, vacante y postulación.
+      Puede incluir recomendaciones generales para esa entrevista.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> preparación para entrevista.
+    </p>
+
+    <h3>5.19 InterviewQuestion</h3>
+    <p>
+      Guarda preguntas probables de entrevista y respuestas sugeridas. Se pueden
+      clasificar como generales, técnicas, conductuales, salariales o de afinidad
+      con la empresa.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> speech personalizado para entrevistas.
+    </p>
+
+    <h3>5.20 ScrapingRun</h3>
+    <p>
+      Registra cada ejecución de scraping por fuente. Guarda estado, hora de inicio,
+      fin, cantidad de vacantes encontradas, creadas, actualizadas y errores.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> monitoreo del scraping.
+    </p>
+
+    <h3>5.21 ScrapedPageLog</h3>
+    <p>
+      Guarda el detalle de páginas visitadas durante una corrida de scraping, incluyendo
+      URL, código de estado, éxito o error.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> auditoría y depuración del scraping.
+    </p>
+
+    <h3>5.22 AIRequestLog</h3>
+    <p>
+      Guarda cada solicitud hecha a Groq u otro proveedor de IA. Registra tarea,
+      input, output, modelo, proveedor y tokens usados.
+    </p>
+    <p>
+      <strong>Workflow relacionado:</strong> auditoría de IA, control de costos y
+      trazabilidad de decisiones.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Workflows principales del sistema</h2>
+
+    <h3>6.1 Workflow de registro del candidato</h3>
+    <ol>
+      <li>El usuario crea una cuenta.</li>
+      <li>Completa su <code>CandidateProfile</code>.</li>
+      <li>Registra educación, experiencia, proyectos, certificaciones y habilidades.</li>
+      <li>El sistema valida que la información sea real, ordenada y reutilizable.</li>
+      <li>El perfil queda disponible para matching, CV dinámico y entrevistas.</li>
+    </ol>
+
+    <h3>6.2 Workflow de búsqueda de empleo</h3>
+    <ol>
+      <li>El usuario configura <code>JobSearchCriteria</code>.</li>
+      <li>El sistema consulta fuentes activas desde <code>JobSource</code>.</li>
+      <li>Se ejecuta un <code>ScrapingRun</code>.</li>
+      <li>Por cada página visitada se registra un <code>ScrapedPageLog</code>.</li>
+      <li>Las empresas encontradas se guardan como <code>ExternalCompany</code>.</li>
+      <li>Las vacantes se guardan como <code>JobPosting</code>.</li>
+    </ol>
+
+    <h3>6.3 Workflow de matching</h3>
+    <ol>
+      <li>El sistema toma un <code>JobPosting</code> activo.</li>
+      <li>Compara requisitos contra experiencia, proyectos, certificaciones y skills del usuario.</li>
+      <li>Groq puede generar una explicación del nivel de compatibilidad.</li>
+      <li>El resultado se guarda en <code>JobMatch</code>.</li>
+      <li>Si el score es adecuado, la vacante pasa a recomendada.</li>
+    </ol>
+
+    <h3>6.4 Workflow de recomendación salarial</h3>
+    <ol>
+      <li>El sistema revisa salario publicado en <code>JobPosting</code>, si existe.</li>
+      <li>Consulta referencias internas desde <code>SalaryBenchmark</code>.</li>
+      <li>Considera seniority, ubicación, experiencia del usuario y expectativa mínima.</li>
+      <li>Genera una recomendación con Groq o reglas internas.</li>
+      <li>Guarda el resultado en <code>SalaryRecommendation</code>.</li>
+    </ol>
+
+    <h3>6.5 Workflow de CV dinámico</h3>
+    <ol>
+      <li>El usuario selecciona una vacante recomendada.</li>
+      <li>El sistema identifica información relevante del perfil.</li>
+      <li>Groq redacta un resumen profesional adaptado sin inventar datos.</li>
+      <li>Se seleccionan experiencias, proyectos, certificaciones y habilidades.</li>
+      <li>Se genera un <code>GeneratedCV</code> usando una <code>CVTemplate</code>.</li>
+      <li>El PDF queda disponible para revisión o postulación.</li>
+    </ol>
+
+    <h3>6.6 Workflow de postulación asistida</h3>
+    <ol>
+      <li>Se crea una <code>Application</code> en estado <code>PENDING_REVIEW</code>.</li>
+      <li>El sistema sugiere respuestas para preguntas del formulario.</li>
+      <li>Las preguntas se guardan en <code>ApplicationQuestion</code>.</li>
+      <li>El usuario revisa el CV, salario sugerido y respuestas.</li>
+      <li>Si aprueba, la postulación pasa a estado <code>APPLIED</code>.</li>
+    </ol>
+
+    <h3>6.7 Workflow de entrevista</h3>
+    <ol>
+      <li>Cuando una postulación cambia a <code>INTERVIEW</code>, se crea un <code>InterviewPrep</code>.</li>
+      <li>Groq analiza la vacante y el perfil del usuario.</li>
+      <li>Genera preguntas probables y respuestas sugeridas.</li>
+      <li>Las respuestas se guardan en <code>InterviewQuestion</code>.</li>
+      <li>El usuario puede practicar y agregar notas propias.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>7. Endpoints sugeridos</h2>
+
+    <h3>Usuarios y perfil</h3>
+    <pre>
+POST   /api/auth/register/
+POST   /api/auth/login/
+POST   /api/auth/refresh/
+GET    /api/me/
+GET    /api/profile/
+PUT    /api/profile/
+    </pre>
+
+    <h3>Información profesional</h3>
+    <pre>
+GET/POST      /api/educations/
+GET/PUT/DELETE /api/educations/{id}/
+
+GET/POST      /api/work-experiences/
+GET/PUT/DELETE /api/work-experiences/{id}/
+
+GET/POST      /api/projects/
+GET/PUT/DELETE /api/projects/{id}/
+
+GET/POST      /api/certifications/
+GET/PUT/DELETE /api/certifications/{id}/
+
+GET/POST      /api/user-skills/
+GET/PUT/DELETE /api/user-skills/{id}/
+    </pre>
+
+    <h3>Vacantes y criterios</h3>
+    <pre>
+GET/POST      /api/job-search-criteria/
+GET/PUT/DELETE /api/job-search-criteria/{id}/
+
+GET           /api/job-sources/
+GET           /api/job-postings/
+GET           /api/job-postings/{id}/
+GET           /api/external-companies/
+    </pre>
+
+    <h3>Matching, salario y CV</h3>
+    <pre>
+POST /api/jobs/{id}/analyze-match/
+POST /api/jobs/{id}/recommend-salary/
+POST /api/jobs/{id}/generate-cv/
+
+GET  /api/job-matches/
+GET  /api/salary-recommendations/
+GET  /api/generated-cvs/
+    </pre>
+
+    <h3>Postulaciones y entrevistas</h3>
+    <pre>
+GET/POST      /api/applications/
+GET/PUT       /api/applications/{id}/
+POST          /api/applications/{id}/generate-answers/
+POST          /api/applications/{id}/mark-applied/
+
+POST          /api/applications/{id}/generate-interview-prep/
+GET           /api/interview-preps/
+GET           /api/interview-preps/{id}/
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>8. Servicios internos recomendados</h2>
+    <p>
+      Para evitar que los ViewSets tengan demasiada lógica, se recomienda usar
+      servicios separados dentro del backend.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Responsabilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>JobScrapingService</code></td>
+          <td>Buscar vacantes en fuentes externas y guardar resultados.</td>
+        </tr>
+        <tr>
+          <td><code>JobMatchingService</code></td>
+          <td>Comparar perfil del usuario contra una vacante.</td>
+        </tr>
+        <tr>
+          <td><code>SalaryRecommendationService</code></td>
+          <td>Calcular salario sugerido para una vacante.</td>
+        </tr>
+        <tr>
+          <td><code>CVGenerationService</code></td>
+          <td>Seleccionar contenido relevante y generar CV en HTML/PDF.</td>
+        </tr>
+        <tr>
+          <td><code>ApplicationAnswerService</code></td>
+          <td>Responder preguntas de formularios de postulación.</td>
+        </tr>
+        <tr>
+          <td><code>InterviewPrepService</code></td>
+          <td>Crear preguntas y respuestas para entrevistas.</td>
+        </tr>
+        <tr>
+          <td><code>GroqClient</code></td>
+          <td>Centralizar todas las llamadas al LLM.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Reglas de negocio importantes</h2>
+    <ul>
+      <li>Un usuario solo puede ver y modificar su propia información.</li>
+      <li>No se debe generar información falsa en el CV.</li>
+      <li>Toda respuesta generada por IA debe poder ser revisada por el usuario.</li>
+      <li>Una vacante no debe duplicarse si ya existe por <code>url</code> o <code>external_job_id</code>.</li>
+      <li>Una postulación debe ser única por usuario y vacante.</li>
+      <li>El salario sugerido debe indicar nivel de confianza y razonamiento.</li>
+      <li>Los logs de IA deben guardarse para trazabilidad.</li>
+      <li>El scraping debe registrar errores y resultados por fuente.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Orden recomendado de desarrollo</h2>
+    <ol>
+      <li>Crear proyecto Django y configurar PostgreSQL.</li>
+      <li>Implementar autenticación JWT.</li>
+      <li>Crear modelos, migraciones y Django Admin.</li>
+      <li>Crear serializers y ViewSets para perfil profesional.</li>
+      <li>Crear endpoints de vacantes y criterios de búsqueda.</li>
+      <li>Crear carga manual de vacantes antes del scraping.</li>
+      <li>Implementar matching básico con reglas.</li>
+      <li>Integrar Groq para mejorar matching y explicación.</li>
+      <li>Crear generación de CV HTML.</li>
+      <li>Exportar CV a PDF.</li>
+      <li>Crear módulo de postulaciones.</li>
+      <li>Crear recomendación salarial.</li>
+      <li>Crear preparación de entrevistas.</li>
+      <li>Agregar scraping o integraciones externas permitidas.</li>
+      <li>Agregar Celery para tareas en segundo plano.</li>
+    </ol>
+  </div>
+
+  <div class="card success">
+    <h2>11. MVP recomendado</h2>
+    <p>
+      Para no hacer el proyecto demasiado grande desde el inicio, el MVP debería
+      enfocarse en:
+    </p>
+    <ul>
+      <li>Registro de perfil profesional del usuario.</li>
+      <li>Carga manual o importación simple de vacantes.</li>
+      <li>Matching usuario-vacante.</li>
+      <li>Generación de CV adaptado.</li>
+      <li>Recomendación salarial básica.</li>
+      <li>Gestión de postulaciones tipo CRM.</li>
+      <li>Preparación de entrevista con Groq.</li>
+    </ul>
+    <p>
+      El scraping avanzado y la postulación automática deberían dejarse para una
+      fase posterior, cuando ya esté validada la utilidad principal del producto.
+    </p>
+  </div>
+
+  <div class="card dark">
+    <h2>12. Conclusión</h2>
+    <p>
+      El backend de HirePath debe diseñarse como una plataforma de empleabilidad
+      centrada en el candidato. La base de datos propuesta permite construir un
+      sistema ordenado, trazable y escalable, donde cada decisión importante queda
+      registrada: qué vacante se encontró, por qué se recomendó, qué salario se
+      sugirió, qué CV se generó y qué respuestas se prepararon.
+    </p>
+    <p>
+      La clave técnica del proyecto será separar correctamente los datos reales del
+      usuario, los datos externos de las vacantes y los contenidos generados por IA.
+      Esa separación permitirá mantener confianza, trazabilidad y control humano
+      durante todo el proceso de búsqueda laboral.
+    </p>
+  </div>
+
+</section>
+
+<footer>
+  <p>HirePath — Informe Técnico del Backend con Django</p>
+</footer>
+
+</body>
+</html>
+```
