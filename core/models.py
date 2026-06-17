@@ -18,7 +18,6 @@ class CandidateProfile(TimeStampedModel):
     )
     headline = models.CharField(max_length=255, blank=True)
     professional_summary = models.TextField(blank=True)
-    years_experience = models.DecimalField(max_digits=4, decimal_places=1, default=0)
     current_salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     desired_salary_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     desired_salary_max = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -117,6 +116,20 @@ class UserSkill(TimeStampedModel):
 
     def __str__(self):
         return f"{self.user} - {self.skill}"
+
+
+class UserLLMSettings(TimeStampedModel):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="llm_settings",
+    )
+    groq_api_key = models.CharField(max_length=255, blank=True)
+    groq_model = models.CharField(max_length=120, default="llama-3.1-8b-instant")
+    is_enabled = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"LLM de {self.user}"
 
 
 class JobSource(TimeStampedModel):

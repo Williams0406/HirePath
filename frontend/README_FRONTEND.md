@@ -20,22 +20,6 @@ NEXT_PUBLIC_API_URL=http://127.0.0.1:8010/api
 - `/`
 - `/login`
 - `/register`
-- `/onboarding`
-- `/dashboard`
-- `/profile`
-- `/jobs`
-- `/jobs/[id]`
-- `/cvs`
-- `/cvs/[id]`
-- `/applications`
-- `/interviews`
-- `/interviews/[id]`
-- `/settings`
 - `/admin`
-- `/admin/users`
-- `/admin/sources`
-- `/admin/scraping`
-- `/admin/jobs`
-- `/admin/ai-logs`
 
-Los contenedores donde iran imagenes quedaron como placeholders vacios.
+El panel `/admin` requiere sesion activa y muestra informacion del usuario autenticado.

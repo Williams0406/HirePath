@@ -22,7 +22,7 @@ export default function AuthForm({ mode = "login" }) {
       }
       const tokens = await authApi.login(form.username, form.password);
       setSession(tokens);
-      router.push("/dashboard");
+      router.push("/admin");
     } catch (err) {
       setError(err.message);
     } finally {

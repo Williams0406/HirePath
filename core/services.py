@@ -2,8 +2,10 @@ from decimal import Decimal
 
 from django.db.models import Q
 from django.utils import timezone
+from groq import Groq
 
 from .models import (
+    AIRequestLog,
     Application,
     ApplicationQuestion,
     CVTemplate,
@@ -15,6 +17,33 @@ from .models import (
     SalaryBenchmark,
     SalaryRecommendation,
 )
+
+
+class UserGroqService:
+    @staticmethod
+    def chat(user, messages, task_type="OTHER"):
+        settings = getattr(user, "llm_settings", None)
+        if not settings or not settings.is_enabled or not settings.groq_api_key:
+            raise ValueError("Configura una API key de Groq para este usuario.")
+
+        client = Groq(api_key=settings.groq_api_key)
+        response = client.chat.completions.create(
+            model=settings.groq_model,
+            messages=messages,
+        )
+        content = response.choices[0].message.content if response.choices else ""
+        usage = getattr(response, "usage", None)
+        tokens_used = getattr(usage, "total_tokens", 0) or 0
+        AIRequestLog.objects.create(
+            user=user,
+            provider="groq",
+            model=settings.groq_model,
+            task_type=task_type,
+            input_data={"messages": messages},
+            output_data={"content": content},
+            tokens_used=tokens_used,
+        )
+        return {"content": content, "model": settings.groq_model, "tokens_used": tokens_used}
 
 
 def _job_text(job):
@@ -44,8 +73,8 @@ class JobMatchingService:
             if term not in known and term in {"python", "django", "react", "next", "sql", "aws", "docker"}:
                 missing.append(term)
 
-        profile = getattr(user, "candidate_profile", None)
-        experience_score = min(Decimal(profile.years_experience if profile else 0) * Decimal("6"), Decimal("30"))
+        total_skill_years = sum((user_skill.years_experience for user_skill in user_skills), Decimal("0"))
+        experience_score = min(total_skill_years * Decimal("3"), Decimal("30"))
         skill_score = Decimal("0")
         if user_skills:
             skill_score = Decimal(len(matched)) / Decimal(len(user_skills)) * Decimal("60")

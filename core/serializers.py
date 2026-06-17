@@ -23,6 +23,7 @@ from .models import (
     ScrapedPageLog,
     ScrapingRun,
     Skill,
+    UserLLMSettings,
     UserSkill,
     WorkExperience,
     Project,
@@ -119,11 +120,11 @@ class UserSkillSerializer(OwnedModelSerializer):
         extra_kwargs = {"skill": {"required": False}}
 
     def validate(self, attrs):
-        if not attrs.get("skill") and not attrs.get("skill_name"):
+        if not self.instance and not attrs.get("skill") and not attrs.get("skill_name"):
             raise serializers.ValidationError("Debe enviar skill o skill_name.")
         return attrs
 
-    def create(self, validated_data):
+    def _set_skill_from_name(self, validated_data):
         skill_name = validated_data.pop("skill_name", None)
         skill_category = validated_data.pop("skill_category", "OTHER")
         if skill_name:
@@ -132,7 +133,42 @@ class UserSkillSerializer(OwnedModelSerializer):
                 defaults={"category": skill_category},
             )
             validated_data["skill"] = skill
-        return super().create(validated_data)
+        return validated_data
+
+    def create(self, validated_data):
+        return super().create(self._set_skill_from_name(validated_data))
+
+    def update(self, instance, validated_data):
+        return super().update(instance, self._set_skill_from_name(validated_data))
+
+
+class UserLLMSettingsSerializer(serializers.ModelSerializer):
+    groq_api_key = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    has_groq_api_key = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserLLMSettings
+        fields = [
+            "id",
+            "groq_api_key",
+            "has_groq_api_key",
+            "groq_model",
+            "is_enabled",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ["id", "has_groq_api_key", "created_at", "updated_at"]
+
+    def get_has_groq_api_key(self, obj):
+        return bool(obj.groq_api_key)
+
+    def update(self, instance, validated_data):
+        if validated_data.get("groq_api_key") == "":
+            validated_data["groq_api_key"] = ""
+            validated_data["is_enabled"] = False
+        elif validated_data.get("groq_api_key"):
+            validated_data["is_enabled"] = True
+        return super().update(instance, validated_data)
 
 
 class JobSourceSerializer(serializers.ModelSerializer):

@@ -1,10 +1,23 @@
-export default function DashboardTopbar({ title = "HirePath" }) {
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { clearSession } from "@/lib/api";
+
+export default function DashboardTopbar() {
+  const router = useRouter();
+
+  function logout() {
+    clearSession();
+    router.replace("/");
+  }
+
   return (
     <header className="topbar">
-      <input className="search" placeholder="Buscar vacantes, empresas o CVs" />
+      <span className="muted">Panel administrativo</span>
       <div className="toolbar">
-        <button className="button icon secondary" title="Notificaciones">N</button>
-        <button className="button icon secondary" title="Perfil">P</button>
+        <Link className="button secondary" href="/">Inicio</Link>
+        <button className="button secondary" type="button" onClick={logout}>Cerrar sesion</button>
       </div>
     </header>
   );

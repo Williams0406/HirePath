@@ -3,32 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const items = [
-  ["D", "Dashboard", "/dashboard"],
-  ["P", "Perfil", "/profile"],
-  ["V", "Vacantes", "/jobs"],
-  ["C", "CVs", "/cvs"],
-  ["A", "Postulaciones", "/applications"],
-  ["E", "Entrevistas", "/interviews"],
-  ["S", "Configuracion", "/settings"],
-];
+const items = [["U", "Mi panel", "/admin"]];
 
 export default function DashboardSidebar({ admin = false }) {
   const pathname = usePathname();
-  const navItems = admin
-    ? [
-        ["M", "Metricas", "/admin"],
-        ["U", "Usuarios", "/admin/users"],
-        ["F", "Fuentes", "/admin/sources"],
-        ["R", "Scraping", "/admin/scraping"],
-        ["V", "Vacantes", "/admin/jobs"],
-        ["I", "Logs IA", "/admin/ai-logs"],
-      ]
-    : items;
+  const navItems = items;
 
   return (
     <aside className="sidebar">
-      <Link href={admin ? "/admin" : "/dashboard"} className="brand">
+      <Link href="/admin" className="brand">
         <span className="brand-mark">H</span>
         <span>HirePath</span>
       </Link>

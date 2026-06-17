@@ -22,6 +22,7 @@ from .models import (
     SalaryRecommendation,
     ScrapingRun,
     Skill,
+    UserLLMSettings,
     UserSkill,
     WorkExperience,
     Project,
@@ -46,6 +47,7 @@ from .serializers import (
     SalaryRecommendationSerializer,
     ScrapingRunSerializer,
     SkillSerializer,
+    UserLLMSettingsSerializer,
     UserSerializer,
     UserSkillSerializer,
     WorkExperienceSerializer,
@@ -56,6 +58,7 @@ from .services import (
     CVGenerationService,
     JobMatchingService,
     SalaryRecommendationService,
+    UserGroqService,
 )
 
 
@@ -85,6 +88,39 @@ class ProfileView(APIView):
         return Response(serializer.data)
 
     patch = put
+
+
+class UserLLMSettingsView(APIView):
+    def get_object(self, user):
+        settings, _ = UserLLMSettings.objects.get_or_create(user=user)
+        return settings
+
+    def get(self, request):
+        serializer = UserLLMSettingsSerializer(self.get_object(request.user))
+        return Response(serializer.data)
+
+    def put(self, request):
+        serializer = UserLLMSettingsSerializer(self.get_object(request.user), data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    patch = put
+
+
+class UserGroqChatView(APIView):
+    def post(self, request):
+        messages = request.data.get("messages")
+        prompt = request.data.get("prompt")
+        if not messages and prompt:
+            messages = [{"role": "user", "content": prompt}]
+        if not isinstance(messages, list) or not messages:
+            return Response({"detail": "Envia messages o prompt."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            result = UserGroqService.chat(request.user, messages, request.data.get("task_type", "OTHER"))
+        except ValueError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(result)
 
 
 class OwnedViewSet(viewsets.ModelViewSet):

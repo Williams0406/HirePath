@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8010/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
 
 export function getToken() {
   if (typeof window === "undefined") return null;
@@ -59,6 +59,42 @@ export const authApi = {
     apiFetch("/auth/register/", {
       method: "POST",
       body: JSON.stringify(payload),
+    }),
+};
+
+export const userApi = {
+  me: () => apiFetch("/me/"),
+  profile: () => apiFetch("/profile/"),
+  llmSettings: () => apiFetch("/llm-settings/"),
+  updateProfile: (payload) =>
+    apiFetch("/profile/", {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+  updateLlmSettings: (payload) =>
+    apiFetch("/llm-settings/", {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+  chatWithGroq: (payload) =>
+    apiFetch("/llm/chat/", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  list: (resource) => apiFetch(`/${resource}/`),
+  create: (resource, payload) =>
+    apiFetch(`/${resource}/`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  update: (resource, id, payload) =>
+    apiFetch(`/${resource}/${id}/`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+  remove: (resource, id) =>
+    apiFetch(`/${resource}/${id}/`, {
+      method: "DELETE",
     }),
 };
 
